@@ -5,10 +5,6 @@ plt.clf()
 EQdata = open("currentQuakes.txt")
 EQdata.readline()
 
-import matplotlib.image as mpimg
-image = mpimg.imread("worldMap.jpg")
-#plt.imshow(image)
-
 #give your data a name
 Longitude = []
 Latitude = []
