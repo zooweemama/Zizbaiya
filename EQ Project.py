@@ -5,23 +5,35 @@ plt.clf()
 EQdata = open("currentQuakes.txt")
 EQdata.readline()
 
-import matplotlib.image as mpimg
-image = mpimg.imread("worldMap.jpg")
-plt.imshow(image)
+#give lists a name
+ShallowLongitude = []
+ShallowLatitude = []
+DeepLongitude = []
+DeepLatitude = []
 
-#give your data a name
-Longitude = []
-Latitude = []
-#Color = 
-
+#add data to lists
+#change color according to depths
 for line in EQdata:
-   line = line.split(',')
-   print(line)
-   Latitude.append(float(line[1]))
-   Longitude.append(float(line[2]))
+    line = line.split(',')
+    #print(line)
+    if float(line[3]) > 50:
+        DeepLatitude.append(float(line[1]))
+        DeepLongitude.append(float(line[2]))
+    else:
+        ShallowLatitude.append(float(line[1]))
+        ShallowLongitude.append(float(line[2]))
 
+#plot dots on graph        
+plt.scatter(ShallowLongitude, ShallowLatitude, alpha=0.5,color='r')
+plt.scatter(DeepLongitude, DeepLatitude, alpha=0.5,color='b')
+
+#inserting the image as a background
+img = plt.imread("Earth.jpg")
+plt.imshow(img, extent= [-197,197,-63,87])
+ 
+#label axes and including a title   
 plt.xlabel("Longitude")
-plt.ylabel("Latitude")  
+plt.ylabel("Latitude")
+plt.suptitle("Zizbaiya Earthquake Plot")
 
-plt.scatter(Longitude, Latitude, alpha=0.5)
 plt.show()
